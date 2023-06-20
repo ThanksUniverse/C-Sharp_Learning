@@ -6,22 +6,22 @@ namespace LinqUsage
     {
         public static void Main()
         {
-            var myBooks = new List<Book>();
-            Book SampleBook = new("C# Basics", 100, 3.8);
-            Book SampleBook2 = new("C# Advanced", 200, 7.4);
-            Book SampleBook3 = new("Extremely Advanced Programming", 300, 10.0);
-            Book SampleBook4 = new("Basic Lua Programming", 50, 1.5);
+            var myBooks = new List<Book>() // We create a list with all our values
+            {
+                new Book("C# Basics", 100, 3.8),
+                new Book("C# Advanced", 200, 7.4),
+                new Book("Extremely Advanced Programming", 300, 10.0),
+                new Book("Basic Lua Programming", 50, 1.5),
+            };
 
-            myBooks.Add(SampleBook); myBooks.Add(SampleBook2); myBooks.Add(SampleBook3); myBooks.Add(SampleBook4);
-
+            // Then we create another one using LINQ to organize it to our like
             var OrderedBooks = myBooks.Where(a => a.GetName().Contains("C#") || a.GetName().Contains("Lua")).OrderBy(a => a.GetPrice());
 
+            // And we print it
             foreach (Book book in OrderedBooks)
             {
                 Console.WriteLine(book.GetName());
             }
-
-
         }
     }
 }

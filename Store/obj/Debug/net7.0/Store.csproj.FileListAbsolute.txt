@@ -1,0 +1,15 @@
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\Store.csproj.AssemblyReference.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\Store.GeneratedMSBuildEditorConfig.editorconfig
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\Store.AssemblyInfoInputs.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\Store.AssemblyInfo.cs
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\Store.csproj.CoreCompileInputs.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\bin\Debug\net7.0\Store.exe
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\bin\Debug\net7.0\Store.deps.json
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\bin\Debug\net7.0\Store.runtimeconfig.json
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\bin\Debug\net7.0\Store.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\bin\Debug\net7.0\Store.pdb
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\Store.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\refint\Store.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\Store.pdb
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\Store.genruntimeconfig.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\Store\obj\Debug\net7.0\ref\Store.dll
