@@ -1,0 +1,15 @@
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\bin\Debug\net7.0\LinqUsage.exe
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\bin\Debug\net7.0\LinqUsage.deps.json
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\bin\Debug\net7.0\LinqUsage.runtimeconfig.json
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\bin\Debug\net7.0\LinqUsage.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\bin\Debug\net7.0\LinqUsage.pdb
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\LinqUsage.csproj.AssemblyReference.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\LinqUsage.GeneratedMSBuildEditorConfig.editorconfig
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\LinqUsage.AssemblyInfoInputs.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\LinqUsage.AssemblyInfo.cs
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\LinqUsage.csproj.CoreCompileInputs.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\LinqUsage.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\refint\LinqUsage.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\LinqUsage.pdb
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\LinqUsage.genruntimeconfig.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LinqUsage\obj\Debug\net7.0\ref\LinqUsage.dll
