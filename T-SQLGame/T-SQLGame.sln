@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T-SQLGame", "T-SQLGame\T-SQLGame.csproj", "{00BAD60B-F4F0-4294-A2F8-93764E79CD29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginScreen", "LoginScreen\LoginScreen.csproj", "{5D517294-F958-447C-B581-A1E5F139C763}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00BAD60B-F4F0-4294-A2F8-93764E79CD29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00BAD60B-F4F0-4294-A2F8-93764E79CD29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00BAD60B-F4F0-4294-A2F8-93764E79CD29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00BAD60B-F4F0-4294-A2F8-93764E79CD29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D517294-F958-447C-B581-A1E5F139C763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D517294-F958-447C-B581-A1E5F139C763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D517294-F958-447C-B581-A1E5F139C763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D517294-F958-447C-B581-A1E5F139C763}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EA51DA9-3836-42C5-A0FF-6C3B834DA743}
+	EndGlobalSection
+EndGlobal
