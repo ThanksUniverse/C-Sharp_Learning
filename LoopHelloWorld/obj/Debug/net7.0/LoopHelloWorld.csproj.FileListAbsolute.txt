@@ -1,0 +1,15 @@
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\bin\Debug\net7.0\LoopHelloWorld.exe
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\bin\Debug\net7.0\LoopHelloWorld.deps.json
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\bin\Debug\net7.0\LoopHelloWorld.runtimeconfig.json
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\bin\Debug\net7.0\LoopHelloWorld.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\bin\Debug\net7.0\LoopHelloWorld.pdb
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\LoopHelloWorld.csproj.AssemblyReference.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\LoopHelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\LoopHelloWorld.AssemblyInfoInputs.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\LoopHelloWorld.AssemblyInfo.cs
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\LoopHelloWorld.csproj.CoreCompileInputs.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\LoopHelloWorld.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\refint\LoopHelloWorld.dll
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\LoopHelloWorld.pdb
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\LoopHelloWorld.genruntimeconfig.cache
+D:\Study-Work\Study\c#_SQL\Learning\RandomProjects\LoopHelloWorld\obj\Debug\net7.0\ref\LoopHelloWorld.dll
