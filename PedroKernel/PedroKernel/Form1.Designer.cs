@@ -23,37 +23,10 @@ namespace PedroKernel
         }
 
         #region Windows Form Designer generated code
-
-        #region trayIcon
-        private void InitializeTrayIcon()
-        {
-            trayIcon = new NotifyIcon();
-            trayIcon.Text = "Pedro";
-            trayIcon.Icon = Properties.Resources.Icon0;
-
-            trayIcon.DoubleClick += (sender, e) => Show();
-
-            ContextMenuStrip trayMenu = new ContextMenuStrip();
-            trayMenu.Items.Add("Open", null, (sender, e) => Show());
-            trayMenu.Items.Add("Exit", null, (sender, e) => OnProcessExit(sender, e));
-
-            trayIcon.ContextMenuStrip = trayMenu;
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Hide the application window and show the tray icon instead
-            e.Cancel = true;
-            Hide();
-            trayIcon.Visible = true;
-        }
-
         private void ExitApplication()
         {
-            trayIcon.Visible = false;
             Application.Exit();
         }
-        #endregion
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -70,7 +43,6 @@ namespace PedroKernel
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.PedroKernel = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -159,14 +131,6 @@ namespace PedroKernel
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // PedroKernel
-            // 
-            this.PedroKernel.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.PedroKernel.BalloonTipTitle = "Pedro Information";
-            this.PedroKernel.Icon = ((System.Drawing.Icon)(resources.GetObject("PedroKernel.Icon")));
-            this.PedroKernel.Text = "PedroKernel";
-            this.PedroKernel.Visible = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -202,7 +166,6 @@ namespace PedroKernel
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
         private Button button3;
-        private NotifyIcon PedroKernel;
     }
 }
 

