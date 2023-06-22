@@ -7,7 +7,7 @@ namespace Store // Then we declare our namespace so we can connect to other file
         {
             string notIndex = "We couldnt find this index in the table.";
             Random rand = new();
-            int money = rand.Next(1, 1000);
+            int money = rand.Next(1, 100);
             Customer you = new("Pedro", money);
 
             Market market = new();

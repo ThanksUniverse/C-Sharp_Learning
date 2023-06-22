@@ -36,14 +36,15 @@ namespace excelToDataGrid
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog(); // Create a openFileDialog (The thing that you select file.)
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm"; // The filter of files that will be selected
-            openFileDialog.Title = "Select an Excel File"; // The title of what will be written in there
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;";
+            openFileDialog.Title = "Select an Excel";
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK) // Now we check if the dialog has pressed Ok
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string filePath = openFileDialog.FileName; // We get the filePath
-                LoadExcelData(filePath); // And execute the LoadExcel function
+                string filePath = openFileDialog.FileName;
+                LoadExcelData(filePath);
+               
             }
         }
     }
