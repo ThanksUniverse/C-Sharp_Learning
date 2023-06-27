@@ -178,9 +178,9 @@ namespace CRUD0
                 MessageBox.Show("We couldnt delete the row " + " error: " + ex.Message, "error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 return;
             }
-            finally { connection.Close(); } 
+            finally { connection.Close(); }
         }
-        #endregion
+
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
@@ -203,6 +203,76 @@ namespace CRUD0
                 MessageBox.Show("Something went wrong when parsing the user ID " + " error: " + ex.Message, "error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 return;
             }
+        }
+        #endregion
+
+        #region search
+
+        private void SearchRow(int id)
+        {
+            connection.Open();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SP_SearchRow", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        using (var dataTable = new DataTable())
+                        {
+                            if (dataTable.Rows.Count <= 0)
+                            {
+                                adapter.Fill(dataTable);
+                                sqlView.DataSource = dataTable;
+                                outputLabel.Text = $"Found {dataTable.Rows.Count} rows.";
+                                outputLabel.ForeColor = Color.GreenYellow;
+                            }
+                            else
+                            {
+                                outputLabel.Text = $"We didnt found any rows.";
+                                outputLabel.ForeColor = Color.DarkRed;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong when searching the user ID " + " error: " + ex.Message, "error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                return;
+            }
+            finally { connection.Close(); }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string inputId = idBox.Text;
+                int outputId;
+                if (int.TryParse(inputId, out outputId))
+                {
+                    SearchRow(outputId);
+                }
+                else
+                {
+                    outputLabel.Text = "Couldnt transform the ID into a number.";
+                    outputLabel.ForeColor = Color.DarkRed;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong when searching the user ID " + " error: " + ex.Message, "error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                return;
+            }
+        }
+        #endregion
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            LoadRecords();
         }
     }
 }

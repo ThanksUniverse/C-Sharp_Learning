@@ -45,6 +45,8 @@
             this.deleteButton = new System.Windows.Forms.Button();
             this.outputLabel = new System.Windows.Forms.Label();
             this.tableBox = new System.Windows.Forms.ComboBox();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sqlView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -221,12 +223,34 @@
             this.tableBox.TabIndex = 17;
             this.tableBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(459, 51);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(113, 23);
+            this.searchButton.TabIndex = 18;
+            this.searchButton.Text = "Search ID";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(459, 209);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(58, 23);
+            this.refreshButton.TabIndex = 19;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(685, 417);
+            this.Controls.Add(this.refreshButton);
+            this.Controls.Add(this.searchButton);
             this.Controls.Add(this.tableBox);
             this.Controls.Add(this.outputLabel);
             this.Controls.Add(this.deleteButton);
@@ -275,5 +299,7 @@
         private Button deleteButton;
         private Label outputLabel;
         private ComboBox tableBox;
+        private Button searchButton;
+        private Button refreshButton;
     }
 }
