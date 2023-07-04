@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Xml;
 
 namespace Random
 {
@@ -8,31 +10,48 @@ namespace Random
     {
         static void Main()
         {
-            /* int[] array = { 1, 2, 0 };
-            Console.WriteLine(FirstMissing(array));
-            int[] arraya = { 7,8,9,11,12 };
-            Console.WriteLine(FirstMissing(arraya)); */
-            int[] arrayb = { 3,4,-1,1 };
-            Console.WriteLine(FirstMissing(arrayb));
-            Console.WriteLine(IsAnagram("rat", "car"));
+            RemoveDuplicates();
+        }
 
+        public static int SingleNumber(int[] nums)
+        {
+            var it = nums.Where(x => nums.Count(y => y == x) == 1).Distinct();
+            return it.ToArray()[0];
+        }
 
+        public static int RemoveDuplicates()
+        {
+            int[] someTable = new int[] { 0, 0, 1, 1, 1, 2, 3, 3, 4 };
 
+            someTable = someTable.OrderBy(x => x).Distinct().ToArray();
 
-            /* ar array2D = new int[][]
+            foreach (int num in someTable)
+                Console.WriteLine(num);
+
+            return 0;
+        }
+
+        public static string LongestCommonPrefix(string[] strs)
+        {
+            if (strs == null || strs.Length == 0)
+                return "";
+
+            string prefix = strs[0];
+
+            for (int i = 1; i < strs.Length; i++)
             {
-                new int[] { 0, 0 }, // Row 0 // x x x
-                new int[] { 0, 1 }, // Row 1//   y
-                new int[] { 0, -1 }, // Row 2//   y
-            };
-            //CheckStraightLine(array2D);
-            var array2D2 = new int[][]
-            {
-                new int[] { 1, 2 }, // Row 0 // x x x
-                new int[] { 2, 3 }, // Row 1//   y
-                new int[] { 3, 5 }, // Row 2//   y
-            };
-            CheckStraightLine(array2D2); */
+                while (!strs[i].StartsWith(prefix))
+                {
+                    prefix = prefix.Substring(0, prefix.Length - 1);
+
+                    if (string.IsNullOrEmpty(prefix))
+                    {
+                        return "";
+                    }
+                }
+            }
+
+            return prefix;
         }
 
         public static int FirstMissing(int[] nums)
@@ -52,7 +71,7 @@ namespace Random
 
             {
                 Console.WriteLine("B");
-                smallest = highest -1 ;
+                smallest = highest - 1;
             }
             smallest = Math.Max(0, smallest);
             return smallest;
