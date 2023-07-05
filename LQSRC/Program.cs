@@ -12,12 +12,22 @@ namespace Random
     {
         static void Main()
         {
-            int[] array = new int[] { 1, -2, 3, 4, -1, 5 };
-            int k = 3;
+            /*  int[] array = new int[] { 1, -2, 3, 4, -1, 5 };
+             int k = 3;
 
-            int maxSum = SlidingWindow(array, k);
+             int maxSum = SlidingWindow(array, k);
 
-            Console.WriteLine(maxSum);
+             Console.WriteLine(maxSum); */
+
+            var nums = new int[] { 1, 1, 1, 0, 0, 2, 1, 0 };
+            SortColors(nums);
+        }
+
+        public static void SortColors(int[] nums)
+        {
+            var array = nums.Order().ToArray();
+            foreach(var num in array)
+                Console.WriteLine(num);
         }
 
         public static int SlidingWindow(int[] nums, int range)
