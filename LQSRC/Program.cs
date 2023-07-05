@@ -12,14 +12,33 @@ namespace Random
     {
         static void Main()
         {
-            /* int[] array2 = new int[] { 1, 1, 0, 1 };
-            Console.WriteLine($"{LongestSubarray(array2)} Target: 3");
-            int[] array4 = new int[] { 1, 1, 1 };
-            Console.WriteLine($"{LongestSubarray(array4)} Target: 2"); */
-            int[] array = new int[] { 1, 1, 0, 0, 1, 1, 1, 0, 1 };
-            Console.WriteLine($"{LongestSubarray(array)} Target: 4");
-            /* int[] array3 = new int[] { 0, 1, 1, 1, 0, 1, 1, 0, 1 };
-            Console.WriteLine($"{LongestSubarray(array3)} Target: 5"); */
+            var array = new int[] { 10, 20, 10, 30, 5 };
+            Console.WriteLine(SlidingWindow(array));
+        }
+
+        public static int SlidingWindow(int[] nums)
+        {
+            int maxAge = 0;
+            int personCounter = 0;
+            int start = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int age = nums[i];
+
+                personCounter++;
+                maxAge = Math.Max(maxAge, age);
+
+                if (personCounter > 3)
+                {
+                    int startAge = nums[start];
+                    start++;
+                    personCounter--;
+                }
+            }
+
+
+            return 0;
         }
 
         public static int LongestSubarray(int[] nums)
