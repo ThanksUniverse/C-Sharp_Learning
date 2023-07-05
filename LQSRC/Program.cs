@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml;
@@ -10,7 +12,37 @@ namespace Random
     {
         static void Main()
         {
-            RemoveDuplicates();
+            /* int[] array2 = new int[] { 1, 1, 0, 1 };
+            Console.WriteLine($"{LongestSubarray(array2)} Target: 3");
+            int[] array4 = new int[] { 1, 1, 1 };
+            Console.WriteLine($"{LongestSubarray(array4)} Target: 2"); */
+            int[] array = new int[] { 1, 1, 0, 0, 1, 1, 1, 0, 1 };
+            Console.WriteLine($"{LongestSubarray(array)} Target: 4");
+            /* int[] array3 = new int[] { 0, 1, 1, 1, 0, 1, 1, 0, 1 };
+            Console.WriteLine($"{LongestSubarray(array3)} Target: 5"); */
+        }
+
+        public static int LongestSubarray(int[] nums)
+        {
+            int zeroCount = 0;
+            int longestWindow = 0;
+            // Left end of the Window
+            int start = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                zeroCount += (nums[i] == 0 ? 1 : 0);
+
+                while (zeroCount > 1)
+                {
+                    zeroCount -= (nums[start] == 0 ? 1 : 0);
+                    start++;
+                }
+
+                longestWindow = Math.Max(longestWindow, i - start);
+            }
+
+            return longestWindow;
         }
 
         public static int SingleNumber(int[] nums)
