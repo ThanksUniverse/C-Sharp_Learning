@@ -33,19 +33,33 @@ namespace Random
             //Console.WriteLine(FirstMissingPositive(array3));
             var array3 = new int[] { 1, 2, 3, 1, 2, 3 };
             Console.WriteLine(ContainsNearbyDuplicate(array3, 2));
+            Console.WriteLine(ContainsNearbyDuplicateSliding(array3, 2));
         }
 
         public static bool ContainsNearbyDuplicate(int[] nums, int k)
         {
-            var array = nums.OrderBy(x => x).ToArray();
-            for (int i = 0; i < array.Length; i++)
+            var dictionary = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
             {
-                for (int j = i+1; j < array.Length; j++)
+                if (dictionary.ContainsKey(nums[i]) && Math.Abs(dictionary[nums[i]] - i) <= k)
                 {
-                    if (nums[i] == nums[j] && Math.Abs(i - j) <= k)
-                    {
+                    return true;
+                }
+                dictionary[nums[i]] = i;
+            }
+            return false;
+        }
+
+        public static bool ContainsNearbyDuplicateSliding(int[] nums, int k)
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int j = i + 1;
+                while (j < nums.Length && Math.Abs(i - j) <= k)
+                {
+                    if (nums[i] == nums[j])
                         return true;
-                    }
+                    j++;
                 }
             }
             return false;
