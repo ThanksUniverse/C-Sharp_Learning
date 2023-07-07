@@ -19,15 +19,96 @@ namespace Random
 
              Console.WriteLine(maxSum); */
 
-            var nums = new int[] { 1, 1, 1, 0, 0, 2, 1, 0 };
-            SortColors(nums);
+            /* var nums = new int[] { 3,2,2,3 };
+            RemoveElement(nums, 3); */
+
+            /* Console.WriteLine(StrStr("leetcode", "leeto"));
+            Console.WriteLine(StrStr("leetcode", "leet"));
+            Console.WriteLine(StrStr("aaapedro", "pedro")); */
+            /* var array = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 20 };
+            Console.WriteLine(FirstMissingPositive(array));
+            var array2 = new int[] { 3, 4, -1, 1 };
+            Console.WriteLine(FirstMissingPositive(array2)); 
+            Console.WriteLine(MinSubArrayLen(4, array3)); */
+            //Console.WriteLine(FirstMissingPositive(array3));
+            var array3 = new int[] { 1, 2, 3, 1, 2, 3 };
+            Console.WriteLine(ContainsNearbyDuplicate(array3, 2));
         }
 
-        public static void SortColors(int[] nums)
+        public static bool ContainsNearbyDuplicate(int[] nums, int k)
         {
-            var array = nums.Order().ToArray();
-            foreach(var num in array)
-                Console.WriteLine(num);
+            var array = nums.OrderBy(x => x).ToArray();
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = i+1; j < array.Length; j++)
+                {
+                    if (nums[i] == nums[j] && Math.Abs(i - j) <= k)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static int FirstMissingPositive(int[] nums)
+        {
+            var array = nums.Where(y => y > 0).OrderBy(x => x).Distinct().ToArray();
+            int j = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                int num = array[i];
+                j++;
+                if (num != j)
+                    return j;
+
+                if (i == array.Length - 1)
+                    return num + 1;
+            }
+
+            return 1;
+        }
+
+        private static int GetMinimumNumber(int[] nums, int num)
+        {
+            int counter = num - 1;
+            while (!nums.Contains(counter))
+            {
+                Console.WriteLine(counter);
+                if (nums.Contains(counter))
+                    return counter;
+
+                counter--;
+
+                if (counter == 0)
+                    return 1;
+            }
+            return counter + 1;
+        }
+
+        public static int StrStr(string haystack, string needle)
+        {
+            if (haystack.Contains(needle))
+            {
+                return haystack.IndexOf(needle);
+            }
+            else
+                return -1;
+        }
+
+        public static int RemoveElement(int[] nums, int val)
+        {
+            int j = 0;
+            foreach (int num in nums)
+            {
+                if (num != val)
+                {
+                    nums[j++] = num;
+                }
+            }
+            foreach (var a in nums)
+                Console.WriteLine(a);
+            return j;
         }
 
         public static int SlidingWindow(int[] nums, int range)
@@ -54,6 +135,28 @@ namespace Random
 
             return maxSum;
         }
+
+        public static int MinSubArrayLen(int target, int[] nums)
+        {
+            int len = 0;              // Current subarray length
+            int val = int.MaxValue;   // Minimum subarray length that meets the target
+            int num = 0;              // Sum of current subarray elements
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                num += nums[i];   // Add the current element to the sum of the subarray
+
+                while (num >= target)   // If the sum is greater than or equal to the target
+                {
+                    val = Math.Min(val, i - len + 1);   // Update the minimum subarray length
+                    num -= nums[len];                   // Subtract the leftmost element from the subarray
+                    len++;                              // Increment the subarray length by moving the left pointer
+                }
+            }
+
+            return val != int.MaxValue ? val : 0;   // Return the minimum subarray length or 0 if not found
+        }
+
 
         public static int LongestSubarray(int[] nums)
         {
