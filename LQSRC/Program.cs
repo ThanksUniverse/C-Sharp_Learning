@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.Marshalling;
+using System.Security.AccessControl;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml;
@@ -31,9 +32,81 @@ namespace Random
             Console.WriteLine(FirstMissingPositive(array2)); 
             Console.WriteLine(MinSubArrayLen(4, array3)); */
             //Console.WriteLine(FirstMissingPositive(array3));
-            var array3 = new int[] { 1, 2, 3, 1, 2, 3 };
-            Console.WriteLine(ContainsNearbyDuplicate(array3, 2));
-            Console.WriteLine(ContainsNearbyDuplicateSliding(array3, 2));
+            var array3 = new int[] { 1, 0 };
+            //Console.WriteLine(ContainsNearbyDuplicate(array3, 2));
+            //Console.WriteLine(ContainsNearbyDuplicateSliding(array3, 2));
+            //Console.WriteLine(MaxConsecutiveAnswers("TTFTTFTT", 1));
+            //Console.WriteLine(MaxConsecutiveAnswers("TFF", 1));
+            //Console.WriteLine(LongestPalindrome("babad"));
+            //Console.WriteLine(Reverse(-123));
+            //Console.WriteLine(SearchInsert(array3, 5));
+            Console.WriteLine(PlusOne(array3));
+        }
+
+        public static int Reverse(int x)
+        {
+            var isNegative = x < 0;
+            var array = Math.Abs(x).ToString().ToCharArray();
+            Array.Reverse(array);
+            var reversedString = new string(array);
+            if (!int.TryParse(reversedString, out int returnNumber))
+                return 0;
+            return isNegative ? returnNumber * -1 : returnNumber;
+        }
+
+
+        public static string LongestPalindrome(string s)
+        {
+            for (int i = 1; i < s.Length; i++)
+            {
+                for (int j = 1; j < s.Length; j++)
+                {
+                    string reversed = new(s.Reverse().ToArray());
+                    string subI = s.Substring(0, j);
+                    string subJ = reversed.Substring(i, j);
+                    Console.WriteLine("SubI: " + subI + " SubJ: " + subJ);
+                    /* if (subI == subJ)
+                        return subI; */
+                }
+            }
+            return "";
+        }
+
+        public static int MaxConsecutiveAnswers(string answerKey, int k)
+        {
+            int longestConsecutiveCount = 0; // Maximum number of consecutive 'T's or 'F's
+            int left = 0; // Left pointer of the sliding window
+            int maxChanges = k; // Maximum changes allowed
+            int tCount = 0; // Count of consecutive 'T's
+            int fCount = 0; // Count of consecutive 'F's
+
+            for (int i = 0; i < answerKey.Length; i++)
+            {
+                char letter = answerKey[i];
+
+                // Increment the count of the currenct answer
+                if (letter == 'T')
+                    tCount++;
+                else
+                    fCount++;
+
+                // If the number of changes needed exceeds the maximum changes allowed, move he left pointer and update the counts
+                while (Math.Min(tCount, fCount) > maxChanges)
+                {
+                    char leftAnswer = answerKey[left];
+
+                    if (leftAnswer == 'T')
+                        tCount--;
+                    else
+                        fCount++;
+
+                    left++;
+                }
+
+                // Update the longese consecutive count
+                longestConsecutiveCount = Math.Max(longestConsecutiveCount, i - left + 1);
+            }
+            return longestConsecutiveCount;
         }
 
         public static bool ContainsNearbyDuplicate(int[] nums, int k)
@@ -201,16 +274,87 @@ namespace Random
             return it.ToArray()[0];
         }
 
+        public static int SearchInsert(int[] nums, int target)
+        {
+            if (target == 0)
+                return 0;
+            if (!nums.Contains(target))
+            {
+                int first = nums.OrderBy(num => Math.Abs(num - target)).First();
+                int it = Array.LastIndexOf(nums, first);
+                Console.WriteLine($"{first} && {target}");
+                if (first > target)
+                    return it;
+                else
+                    return it + 1;
+            }
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int num = nums[i];
+
+                if (num == target)
+                    return i;
+            }
+            return 0;
+        }
+
+        public static int[] PlusOne(int[] digits)
+        {
+            StringBuilder sb = new();
+
+            foreach (int digit in digits)
+            {
+                sb.Append(digit);
+            }
+
+            int newNum = int.Parse(sb.ToString());
+            newNum++;
+            string newNumString = newNum.ToString();
+            int[] answer = new int[newNumString.Length];
+
+            for (int i = 0; i < newNumString.Length; i++)
+            {
+                answer[i] = int.Parse(newNumString[i].ToString());
+            }
+
+            /* int num = int.Parse(textNum);
+            num++;
+            var textNumAdded = num.ToString();
+            int[] answer = new int[textNumAdded.Length];
+            for (int i = 0; i < textNumAdded.Length; i++)
+            {
+                answer[i] = textNumAdded[textNumAdded[i]];
+            } */
+            return answer;
+        }
+
+        public static int LengthOfLastWord(string s)
+        {
+            var newLine = s.Trim();
+            var newString = newLine.Split();
+            return newString[newString.Length - 1].Length;
+        }
+
         public static int RemoveDuplicates()
         {
             int[] someTable = new int[] { 0, 0, 1, 1, 1, 2, 3, 3, 4 };
 
-            someTable = someTable.OrderBy(x => x).Distinct().ToArray();
+            var hash = new HashSet<int>();
+            int j = 0;
+            for (int i = 0; i < someTable.Length; i++)
+            {
+                int num = someTable[i];
+                if (!hash.Contains(num))
+                {
+                    hash.Add(num);
+                    someTable[j++] = num;
+                }
+            }
 
-            foreach (int num in someTable)
+            foreach (var num in someTable)
                 Console.WriteLine(num);
 
-            return 0;
+            return j;
         }
 
         public static string LongestCommonPrefix(string[] strs)
