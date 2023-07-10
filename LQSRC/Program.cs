@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Security.AccessControl;
@@ -32,7 +33,6 @@ namespace Random
             Console.WriteLine(FirstMissingPositive(array2)); 
             Console.WriteLine(MinSubArrayLen(4, array3)); */
             //Console.WriteLine(FirstMissingPositive(array3));
-            var array3 = new int[] { 1, 0 };
             //Console.WriteLine(ContainsNearbyDuplicate(array3, 2));
             //Console.WriteLine(ContainsNearbyDuplicateSliding(array3, 2));
             //Console.WriteLine(MaxConsecutiveAnswers("TTFTTFTT", 1));
@@ -40,7 +40,161 @@ namespace Random
             //Console.WriteLine(LongestPalindrome("babad"));
             //Console.WriteLine(Reverse(-123));
             //Console.WriteLine(SearchInsert(array3, 5));
+            //Console.WriteLine(PlusOne(array3));
+            //string t = "nagaram";
+            var array3 = new int[] { 9 };
+            //var array3 = new int[] { 7, 2, 8, 5, 0, 9, 1, 2, 9, 5, 3, 6, 6, 7, 3, 2, 8, 4, 3, 7, 9, 5, 7, 7, 4, 7, 4, 9, 4, 7, 0, 1, 1, 1, 7, 4, 0, 0, 6 };
             Console.WriteLine(PlusOne(array3));
+        }
+
+        public static int[] PlusOne(int[] digits)
+        {
+            int n = digits.Length;
+            for (int i = n - 1; i >= 0; i--)
+            {
+                if (digits[i] < 9)
+                {
+                    digits[i]++;
+                    return digits;
+                }
+                digits[i] = 0;
+            }
+            int[] newNumber = new int[n + 1];
+            newNumber[0] = 1;
+
+            foreach (var d in newNumber)
+                Console.WriteLine(d);
+
+            return newNumber;
+        }
+
+        public static void MoveZeroes2(int[] nums)
+        {
+            int zeroCount = 0;
+            int j = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int num = nums[i];
+
+                if (num == 0)
+                {
+                    zeroCount++;
+                }
+                else
+                {
+                    nums[j++] = num;
+                }
+            }
+
+            for (int i = nums.Length - zeroCount; i < nums.Length; i++)
+            {
+                nums[i] = 0;
+            }
+
+            foreach (var n in nums)
+                Console.WriteLine(n);
+        }
+
+        public static void MoveZeroes3(int[] nums)
+        {
+            var zeroCount = nums.Count(x => x == 0);
+            nums = nums.OrderBy(x => x).Where(y => y > 0).ToArray();
+
+            Array.Resize(ref nums, nums.Length + zeroCount);
+
+            for (int i = nums.Length - zeroCount; i < nums.Length; i++)
+            {
+                nums[i] = 0;
+            }
+
+            foreach (var n in nums)
+                Console.WriteLine(n);
+        }
+
+        public static bool RepeatedSubstringPattern(string s)
+        {
+            var repeat = s + s;
+            Console.WriteLine(repeat);
+            Console.WriteLine(repeat.Substring(1, repeat.Length - 2));
+            if (repeat.Substring(1, repeat.Length - 2).Contains(s))
+                return true;
+            return false;
+        }
+
+        public static bool IsAnagram2(string s, string t)
+        {
+            var array0 = s.ToArray();
+            var array1 = t.ToArray();
+
+            Array.Sort(array0);
+            Array.Sort(array1);
+
+            string a = new(array0);
+            string b = new(array1);
+
+            if (a == b)
+                return true;
+
+            return false;
+        }
+
+        public static int StrStr2(string haystack, string needle)
+        {
+            if (haystack.Contains(needle))
+            {
+                return haystack.IndexOf(needle);
+            }
+            else
+                return -1;
+        }
+
+        public static char FindTheDifference(string s, string t)
+        {
+            var orderedT = t.ToArray();
+            Array.Sort(orderedT);
+            var orderedS = s.ToArray();
+            Array.Sort(orderedS);
+
+            if (s.Length == 1)
+                return s[^1];
+
+            int counter = 0;
+            while (counter < t.Length)
+            {
+                if (s.Length <= counter)
+                    return t[counter];
+                if (orderedT[counter] != orderedS[counter])
+                {
+                    return orderedT[counter];
+                }
+                counter++;
+            }
+
+            return '0';
+        }
+
+        public static string MergeAlternately(string word1, string word2)
+        {
+            var bd = new StringBuilder();
+            int j = 0;
+            for (int i = 0; i < word1.Length; i++)
+            {
+                char a = word1[i];
+                bd.Append(a);
+                if (word2.Length > i)
+                {
+                    char b = word2[i];
+                    bd.Append(b);
+                }
+                j++;
+            }
+
+            while (j < word2.Length)
+            {
+                bd.Append(word2[j++]);
+            }
+
+            return bd.ToString();
         }
 
         public static int Reverse(int x)
@@ -298,34 +452,36 @@ namespace Random
             return 0;
         }
 
-        public static int[] PlusOne(int[] digits)
+        public static int FindMaxSumArray(int[] nums, int k)
         {
-            StringBuilder sb = new();
-
-            foreach (int digit in digits)
+            int maxValue = int.MinValue;
+            int currentSum = 0;
+            for (int i = 0; i < nums.Length; i++)
             {
-                sb.Append(digit);
+                currentSum += nums[i];
+                if (i >= k - 1)
+                {
+                    maxValue = Math.Max(maxValue, currentSum);
+                    currentSum -= nums[i - (k - 1)];
+                }
             }
+            return maxValue;
+        }
 
-            int newNum = int.Parse(sb.ToString());
-            newNum++;
-            string newNumString = newNum.ToString();
-            int[] answer = new int[newNumString.Length];
-
-            for (int i = 0; i < newNumString.Length; i++)
+        public static int FindMaxSumArray2(int[] nums, int k)
+        {
+            int maxValue = int.MinValue;
+            int currentSum = 0;
+            for (int i = 0; i < nums.Length; i++)
             {
-                answer[i] = int.Parse(newNumString[i].ToString());
+                currentSum += nums[i];
+                if (i >= k - 1)
+                {
+                    maxValue = Math.Max(maxValue, currentSum);
+                    currentSum -= nums[i - (k - 1)];
+                }
             }
-
-            /* int num = int.Parse(textNum);
-            num++;
-            var textNumAdded = num.ToString();
-            int[] answer = new int[textNumAdded.Length];
-            for (int i = 0; i < textNumAdded.Length; i++)
-            {
-                answer[i] = textNumAdded[textNumAdded[i]];
-            } */
-            return answer;
+            return maxValue;
         }
 
         public static int LengthOfLastWord(string s)
@@ -647,11 +803,5 @@ namespace Random
             }
             return highest;
         }
-    }
-
-    public class ListNode
-    {
-        public int val;
-        public ListNode next;
     }
 }
