@@ -42,9 +42,56 @@ namespace Random
             //Console.WriteLine(SearchInsert(array3, 5));
             //Console.WriteLine(PlusOne(array3));
             //string t = "nagaram";
-            var array3 = new int[] { 9 };
+            var array3 = new int[] { 1, 3, 2, 4 };
             //var array3 = new int[] { 7, 2, 8, 5, 0, 9, 1, 2, 9, 5, 3, 6, 6, 7, 3, 2, 8, 4, 3, 7, 9, 5, 7, 7, 4, 7, 4, 9, 4, 7, 0, 1, 1, 1, 7, 4, 0, 0, 6 };
-            Console.WriteLine(PlusOne(array3));
+            Console.WriteLine(IsMonotonic(array3));
+        }
+
+        public static bool IsMonotonic(int[] nums)
+        {
+            bool increment = false, decrement = false;
+            for (int i = 1; i < nums.Length; i++)
+            {
+                int num = nums[i];
+                int previous = nums[i - 1];
+                if (num != previous)
+                {
+                    if (num > previous)
+                        increment = true;
+                    else
+                        decrement = true;
+                }
+                if (increment && decrement)
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool CanMakeArithmeticProgression(int[] arr)
+        {
+            int min = arr.Min(), max = arr.Max();
+            int n = arr.Length;
+
+            if (max - min == 0)
+            {
+                return true;
+            }
+
+            if ((max - min) % (n - 1) != 0)
+                return false;
+
+            int diff = (max - min) / (n - 1);
+            var hashSet = new HashSet<int>();
+
+            for (int i = 0; i < n; i++)
+            {
+                if ((arr[i] - min) % diff != 0)
+                    return false;
+
+                hashSet.Add(arr[i]);
+            }
+
+            return hashSet.Count == n;
         }
 
         public static int[] PlusOne(int[] digits)
@@ -61,6 +108,9 @@ namespace Random
             }
             int[] newNumber = new int[n + 1];
             newNumber[0] = 1;
+
+            int num = digits.Min();
+
 
             foreach (var d in newNumber)
                 Console.WriteLine(d);
