@@ -169,7 +169,6 @@ namespace DapperLearning
 
         static void ExecuteScalar(SqlConnection connection)
         {
-            // Previnir SQL Injection nao usando insert into
             var insertSql = @"insert into
                 [Category]
                 Output inserted.[Id]
@@ -182,11 +181,9 @@ namespace DapperLearning
                 @Description,
                 @Featured
             )";
-            // Nao podemos concatenar strings aqui com ${}
 
             var category = new Category("Amazon AWS", "amazon", "AWS Cloud", 8, "Categoria destinada a servicos do AWS", false);
 
-            // Sempre usar dessa forma para evitar sqlInjection
             var id = connection.ExecuteScalar<Guid>(insertSql, new
             {
                 category.Title,
@@ -198,7 +195,6 @@ namespace DapperLearning
 
             });
 
-            // con.Execute Retorna quantidade de rows editados
             Console.WriteLine($"A categoria inserida foi: {id}.");
         }
 
