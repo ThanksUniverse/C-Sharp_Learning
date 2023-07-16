@@ -6,21 +6,29 @@ namespace EntityFramework
 {
     public static class Program
     {
-        public static void Main()
+        static void Main(string[] args)
         {
+            //Eager Loading
             using var context = new BlogDataContext();
 
-            var post = context
+            var posts = context.PostWithTagsCounts.ToList();
+
+            foreach (var postWithTagsCount in posts)
+            {
+                Console.WriteLine(postWithTagsCount.Count);
+            }
+
+        }
+
+        public static List<Post> GetPosts(BlogDataContext context, int skip = 0, int take = 1000)
+        {
+            var posts = context
                 .Posts
-                .Include(x => x.Author)
-                .Include(x => x.Category)
-                .OrderByDescending(x => x.LastUpdateDate)
-                .FirstOrDefault(x => x.Id == 1);
-
-            post.Author.Name = "Pedro Bertoluchi";
-
-            context.Posts.Update(post);
-            context.SaveChanges();
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+            return posts;
         }
     }
 }
