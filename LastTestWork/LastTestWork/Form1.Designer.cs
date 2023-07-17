@@ -35,7 +35,7 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.asasasasas = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.priceLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.TextBox();
@@ -131,15 +131,15 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Name:";
             // 
-            // label2
+            // priceLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Fira Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(52, 355);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Price:";
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Font = new System.Drawing.Font("Fira Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.priceLabel.Location = new System.Drawing.Point(52, 355);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(69, 20);
+            this.priceLabel.TabIndex = 7;
+            this.priceLabel.Text = "Price:";
             // 
             // label3
             // 
@@ -261,7 +261,7 @@
             this.Controls.Add(this.idBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.priceLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.asasasasas);
             this.Controls.Add(this.searchButton);
@@ -290,7 +290,7 @@
         private Button searchButton;
         private Label asasasasas;
         private Label label1;
-        private Label label2;
+        private Label priceLabel;
         private Label label3;
         private Label label4;
         private TextBox idBox;

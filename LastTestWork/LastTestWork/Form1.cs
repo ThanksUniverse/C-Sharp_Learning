@@ -108,10 +108,12 @@ namespace LastTestWork
             {
                 if (tableBox.SelectedIndex == (int)Table.Person)
                 {
+                    priceLabel.Text = "Age:";
                     UpdateBoxes(1);
                 }
                 else
                 {
+                    priceLabel.Text = "Price:";
                     UpdateBoxes(0);
                 }
             }
@@ -231,12 +233,21 @@ namespace LastTestWork
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = sqlView.Rows[e.RowIndex];
-
-                idBox.Text = row.Cells["Id"].Value.ToString();
-                nameBox.Text = row.Cells["Name"].Value.ToString();
-                priceBox.Text = row.Cells["Price"].Value.ToString();
-                registerDate.Text = row.Cells["RegisterDate"].Value.ToString();
-                updateDate.Text = row.Cells["UpdateDate"].Value.ToString();
+                if (tableBox.SelectedIndex == (int)Table.Person)
+                {
+                    idBox.Text = row.Cells["Id"].Value.ToString();
+                    nameBox.Text = row.Cells["Name"].Value.ToString();
+                    priceBox.Text = row.Cells["Age"].Value.ToString();
+                    registerDate.Text = row.Cells["RegisterDate"].Value.ToString();
+                }
+                else
+                {
+                    idBox.Text = row.Cells["Id"].Value.ToString();
+                    nameBox.Text = row.Cells["Name"].Value.ToString();
+                    priceBox.Text = row.Cells["Price"].Value.ToString();
+                    registerDate.Text = row.Cells["RegisterDate"].Value.ToString();
+                    updateDate.Text = row.Cells["UpdateDate"].Value.ToString();
+                }
             }
         }
     }
