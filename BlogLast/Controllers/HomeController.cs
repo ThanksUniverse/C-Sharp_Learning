@@ -7,7 +7,6 @@ namespace BlogLast.Controllers
     [Route("")]
     public class HomeController : ControllerBase
     {
-        [HttpGet("")]
         public IActionResult Get()
         {
             return Ok();
