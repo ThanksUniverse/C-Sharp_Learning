@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Blog.Models;
+﻿using BlogLast.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Blog.Data.Mappings
+namespace BlogLast.Data.Mappings
 {
     public class UserMap : IEntityTypeConfiguration<User>
     {
@@ -27,10 +26,22 @@ namespace Blog.Data.Mappings
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(80);
 
-            builder.Property(x => x.Bio);
-            builder.Property(x => x.Email);
-            builder.Property(x => x.Image);
-            builder.Property(x => x.PasswordHash);
+            builder.Property(x => x.Bio)
+                .IsRequired(false);
+
+            builder.Property(x => x.Email)
+                .IsRequired()
+                .HasColumnName("Email")
+                .HasColumnType("varchar")
+                .HasMaxLength(160);
+
+            builder.Property(x => x.Image)
+                .IsRequired(false);
+
+            builder.Property(x => x.PasswordHash)
+                .HasColumnName("PasswordHash")
+                .HasColumnType("varchar")
+                .HasMaxLength(80);
 
             builder.Property(x => x.Slug)
                 .IsRequired()

@@ -1,8 +1,8 @@
-using Blog.Data.Mappings;
-using Blog.Models;
+using BlogLast.Data.Mappings;
+using BlogLast.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blog.Data
+namespace BlogLast.Data
 {
     public class BlogDataContext : DbContext
     {
@@ -11,7 +11,7 @@ namespace Blog.Data
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer("Server=localhost,1433;Database=BlogLast;User ID=sa;Password=1q2w3e4r@#$");
+            => options.UseSqlServer("Server=localhost,1433;Database=blogXX;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace Blog.Models
+namespace BlogLast.Models
 {
     public class Category
     {

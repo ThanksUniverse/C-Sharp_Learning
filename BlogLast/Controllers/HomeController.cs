@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BlogLast.Attributes;
+using Microsoft.AspNetCore.Mvc;
 
 // Health Check
 namespace BlogLast.Controllers
@@ -7,6 +8,8 @@ namespace BlogLast.Controllers
     [Route("")]
     public class HomeController : ControllerBase
     {
+        [HttpGet("")]
+        [ApiKey]
         public IActionResult Get()
         {
             return Ok();
