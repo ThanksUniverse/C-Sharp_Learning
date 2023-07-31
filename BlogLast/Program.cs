@@ -18,6 +18,20 @@ LoadAuthenticators(app);
 
 app.MapControllers();
 
+if (app.Environment.IsProduction())
+    Console.WriteLine("Production")
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+if (app.Environment.IsStagging())
+    Console.WriteLine("Stagging")
+
+app.UseHttpsRedirection();
+
 app.Run();
 
 void LoadConfiguration(WebApplication app)
@@ -79,6 +93,11 @@ void ConfigureMvc(WebApplicationBuilder builder)
 
 void ConfigureServices(WebApplicationBuilder builder)
 {
+    var connectionString = builder.Configuration.GetConnectionString(options => {
+        options.UseSqlServer(connectionString);
+    });
+    builder.Services.AddEndPointsApiExplorer();
+    builder.Services.AddSwaggerGen();
     builder.Services.AddDbContext<BlogDataContext>();
     builder.Services.AddTransient<EmailService>();
     builder.Services.AddTransient<TokenService>(); // Sempre cria uma nova instancia.
