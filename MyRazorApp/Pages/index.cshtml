@@ -1,33 +1,8 @@
 @page
 @model MyRazorApp.Pages.Index
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Index</title>
-</head>
-<body>
-<div>
-    <h1>Categorias</h1>
-    <table>
-        <thead>
-        <tr>
-            <td>Id</td>
-            <td>Title</td>
-            <td>Price</td>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var category in Model.Categories)
-        {
-            <tr>
-                <td>@category.Id</td>
-                <td>@category.Title</td>
-                <td>@category.Price.ToString("C", new CultureInfo("pt-BR"))</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
-</body>
-</html>
+@{
+    ViewData["Title"] = "Bem Vindos!";
+}
+
+<h1>Home</h1>

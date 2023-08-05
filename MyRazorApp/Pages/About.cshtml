@@ -1,3 +1,13 @@
-@page
+@page "~/sobre"
 @model MyRazorApp.Pages.About
+
+@{
+    ViewData["Title"] = "About";
+}
+
 <h1>Sobre</h1>
+
+@section scripts
+{
+    <script src="~/js/site.js"></script>
+}

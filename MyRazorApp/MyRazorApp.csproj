@@ -8,6 +8,23 @@
 
   <ItemGroup>
     <Content Remove="Pages\Shared\_LayoutDois.cshtml" />
+    <Content Remove="Pages\wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Pages\wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

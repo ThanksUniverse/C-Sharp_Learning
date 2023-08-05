@@ -2,14 +2,20 @@
 
 <html>
 <head>
-    <title>My Razor App</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" >
+    <link rel="stylesheet" href="~/MyRazorApp.styles.css" >
 </head>
 <body>
 <header>
     <partial name="Shared/NavMenuPartial"/>
 </header>
 <main>
-    @RenderBody();
+    @RenderBody()
 </main>
+
+<footer> @DateTime.Now.Year - Powered by Razer Pages </footer>
+
+@RenderSection("scripts", false)
 </body>
 </html>
