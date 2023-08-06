@@ -1,0 +1,79 @@
+﻿@page "/products/edit/{id:int}"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext _context
+@inject NavigationManager _navigationManager
+
+<h1>@model?.Title</h1>
+
+<EditForm Model="@model" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <div class="mb-3">
+        <label for="Title" class="form-label">Title</label>
+        <InputText class="form-control" type="text" id="Title" @bind-Value="@model.Title"></InputText>
+    </div>
+
+    <div class="mb-3">
+        <label for="Price" class="form-label">Price</label>
+        <InputNumber class="form-control" type="number" id="Price" @bind-Value="@model.Price"></InputNumber>
+    </div>
+
+    <div class="mb-3">
+        <label for="CategoryId" class="form-label">Category</label>
+        <InputSelect class="form-control" type="number" id="CategoryId" @bind-Value="@model.CategoryId">
+            @foreach (var category in categories)
+            {
+                <option value="@category.Id">@category.Title</option>
+            }
+        </InputSelect>
+    </div>
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @errorMessage
+        </div>
+    }
+
+    <button class="btn btn-warning">Editar</button>
+</EditForm>
+
+@code
+{
+    [Parameter]
+    public int Id { get; set; }
+
+    private Product? model = new();
+    private List<Category> categories = new();
+    private string? errorMessage = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await _context.Categories.AsNoTracking().OrderBy(x => x.Title).ToListAsync();
+        model = await _context.Products.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id);
+    }
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            var prod = await _context.Products.FirstOrDefaultAsync(x => x.Id == Id);
+            if (prod is null)
+                throw new Exception("Produto nao encontrado");
+
+            prod.Title = model.Title;
+            prod.Price = model.Price;
+            prod.CategoryId = model.CategoryId;
+
+            _context.Products.Update(prod);
+            await _context.SaveChangesAsync();
+
+            _navigationManager.NavigateTo("/products");
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+    }
+}

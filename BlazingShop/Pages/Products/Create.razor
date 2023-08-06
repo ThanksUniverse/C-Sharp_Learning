@@ -1,0 +1,77 @@
+﻿@page "/products/create"
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext _context
+@inject NavigationManager _navigationManager
+
+
+<div class="container">
+    <h1>New Product</h1>
+
+    <EditForm Model="_model" OnValidSubmit="@HandleSubmitAsync">
+
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <ValidationSummary/>
+
+        <div class="mb-3">
+            <label for="Title" class="form-label">Title</label>
+            <InputText class="form-control" type="text" id="Title" @bind-Value="_model.Title"></InputText>
+        </div>
+
+        <div class="mb-3">
+            <label for="Price" class="form-label">Price</label>
+            <InputNumber class="form-control" type="number" id="Price" @bind-Value="_model.Price">
+
+            </InputNumber>
+        </div>
+
+        <div class="mb-3">
+            <label for="CategoryId" class="form-label">CategoryId</label>
+            <InputSelect id="CategoryId" @bind-Value="_model.CategoryId" class="form-control">
+                @foreach (var category in _categories)
+                {
+                    <option value="@category.Id">
+                        @category.Title
+                    </option>
+                }
+            </InputSelect>
+        </div>
+
+        @if (!string.IsNullOrEmpty(_errorMessage))
+        {
+            <div class="alert alert-danger" role="alert">
+                @_errorMessage
+            </div>
+        }
+
+        <button class="btn-success" type="submit">Salvar</button>
+
+    </EditForm>
+
+</div>
+
+@code
+{
+    private Product _model = new();
+    List<Category> _categories = new();
+    string? _errorMessage = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _categories = await _context.Categories.AsNoTracking().ToListAsync();
+        _model.CategoryId = _categories[0].Id;
+    }
+
+    async Task HandleSubmitAsync()
+    {
+        try
+        {
+            await _context.Products.AddAsync(_model);
+            await _context.SaveChangesAsync();
+            _navigationManager.NavigateTo("/products");
+        }
+        catch (Exception e)
+        {
+            _errorMessage = "Falha ao persistir os dados";
+        }
+    }
+}
