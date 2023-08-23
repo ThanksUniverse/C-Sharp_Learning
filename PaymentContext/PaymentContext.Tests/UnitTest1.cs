@@ -1,3 +1,5 @@
+using PaymentContext.Domain.Entities;
+
 namespace PaymentContext.Tests;
 
 [TestClass]
