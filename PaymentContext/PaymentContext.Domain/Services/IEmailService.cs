@@ -1,6 +1,6 @@
 ﻿namespace PaymentContext.Domain.Services;
 
-public class IEmailService
+public interface IEmailService
 {
-    
+    void Send(string to, string email, string subject, string body);
 }

@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="flunt" Version="1.0.2" />
+  </ItemGroup>
+
+
+
 </Project>

@@ -1,26 +1,31 @@
+using System.Reflection.Metadata;
 using System.Collections.Generic;
 using System;
+using Flunt.Validations;
+using PaymentContext.Domain.ValueObjects;
+using PaymentContext.Shared.Entities;
+using Document = PaymentContext.Domain.ValueObjects.Document;
 
 namespace PaymentContext.Domain.Entities
 {
-    public class Student
+    public class Student : Entity
     {
         private IList<Subscription> _subscriptions;
 
-        public Student(string firstName, string lastName, string document, string email)
+        public Student(Name name, Document document, Email email)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            Name = name;
             Document = document;
             Email = email;
             _subscriptions = new List<Subscription>();
+
+            AddNotifications(name, document, email);
         }
 
-        public string FirstName { get; private set; } = String.Empty;
-        public string LastName { get; private set; } = String.Empty;
-        public string Document { get; private set; } = String.Empty;
-        public string Email { get; private set; } = String.Empty;
-        public string Address { get; private set; } = String.Empty;
+        public Name Name { get; private set; }
+        public Document Document { get; private set; }
+        public Email Email { get; private set; }
+        public Address Address { get; private set; }
 
         private IReadOnlyCollection<Subscription> Subscriptions
         {
@@ -29,13 +34,24 @@ namespace PaymentContext.Domain.Entities
 
         public void AddSubscription(Subscription subscription)
         {
-            // Se ja tiver uma assinatura ativa, cancela
+            var hasSubscriptionActive = false;
+            foreach (var sub in _subscriptions)
+            {
+                if (sub.Active)
+                {
+                    hasSubscriptionActive = true;
+                    break;
+                }
+            }
 
-            // Cancela todas as outras assinaturas, e coloca esta como principal
-            foreach (var sub in Subscriptions)
-                sub.Activate();
+            AddNotifications(new Contract()
+                .Requires()
+                .IsFalse(hasSubscriptionActive, "Student.Subscriptions", "Voce ja tem uma assinatura ativa")
+                .AreEquals(0, subscription.Payments.Count, "Student.Subscription.Payments", "Esta assinatura nao possui pagamentos")
+            );
 
-            _subscriptions.Add(subscription);
+            if (hasSubscriptionActive)
+                AddNotification("Student.Subscriptions", "Voce ja tem uma assinatura ativa");
         }
     }
 }
