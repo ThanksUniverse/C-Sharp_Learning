@@ -1,6 +1,8 @@
 ﻿namespace Store.Domain.Enums;
 
-public class EOrderStatus
+public enum EOrderStatus
 {
-    
+    WaitingPayment = 1,
+    WaitingDelivery = 2,
+    Canceled = 3
 }
