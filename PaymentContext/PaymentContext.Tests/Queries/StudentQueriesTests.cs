@@ -28,7 +28,6 @@ public class StudentQueriesTests
 
         Assert.AreEqual(null, student);
     }
-    
     public void ShouldReturnStudentWhenDocumentNotExists()
     {
         var exp = StudentQueries.GetStudentInfo("12345678900");

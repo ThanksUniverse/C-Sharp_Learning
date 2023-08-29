@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study-Work\\Study\\c#_SQL\\Learning\\RandomProjects\\LinqUsage\\LinqUsage.csproj",
+      "projectUniqueName": "d:\\Study-Work\\Study\\c#_SQL\\Learning\\RandomProjects\\LinqUsage\\LinqUsage.csproj",
       "projectName": "LinqUsage",
-      "projectPath": "D:\\Study-Work\\Study\\c#_SQL\\Learning\\RandomProjects\\LinqUsage\\LinqUsage.csproj",
+      "projectPath": "d:\\Study-Work\\Study\\c#_SQL\\Learning\\RandomProjects\\LinqUsage\\LinqUsage.csproj",
       "packagesPath": "C:\\Users\\Desktop\\.nuget\\packages\\",
-      "outputPath": "D:\\Study-Work\\Study\\c#_SQL\\Learning\\RandomProjects\\LinqUsage\\obj\\",
+      "outputPath": "d:\\Study-Work\\Study\\c#_SQL\\Learning\\RandomProjects\\LinqUsage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Dependencies\\VisualStudio SDKs\\NuGetPackages"
@@ -34,7 +34,8 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.pkg.github.com/ThanksUniverse/index.json": {}
       },
       "frameworks": {
         "net7.0": {
@@ -67,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
